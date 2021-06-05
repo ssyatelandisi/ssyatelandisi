@@ -3,7 +3,9 @@ import "antd/dist/antd.css";
 const { Header, Footer } = Layout;
 
 function Head() {
-  return <Header style={{ textAlign: "center" }}>这是头部</Header>;
+  return (
+    <Header style={{ textAlign: "center", backgroundColor: "#blue" }}></Header>
+  );
 }
 
 function Foot() {
