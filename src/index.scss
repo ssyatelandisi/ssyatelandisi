@@ -1,4 +1,14 @@
-body {
+* {
   margin: 0;
+}
+.ant-layout {
+  height: 100%;
   min-height: 100vh;
+}
+.ant-layout-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 1rem;
+  justify-content: center;
 }

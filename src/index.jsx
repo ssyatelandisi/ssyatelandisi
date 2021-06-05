@@ -1,16 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Layout } from "antd";
-import "antd/dist/antd.css";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./pages/Home";
+import Player from "./pages/Player";
 import "./index.scss";
-const { Header, Footer, Content } = Layout;
 ReactDOM.render(
-  <>
-    <Layout>
-      <Header>Header</Header>
-      <Content>Content</Content>
-      <Footer style={{ textAlign: "center" }}>我梦@2021</Footer>
-    </Layout>
-  </>,
+  <Router>
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route path="/player/:name" component={Player} />
+    </Switch>
+  </Router>,
   document.getElementById("root")
 );
