@@ -29,7 +29,7 @@ class Player extends Component {
                     volume: 1.0,
                     playbackSpeed: [0.5, 0.75, 1.0, 1.25, 1.5],
                     video: {
-                      url: "https://cdn.jsdelivr.net/gh/ssyatelandisi/ssyatelandisi@master/docs/doraemon.m3u8",
+                      url: "https://cdn.jsdelivr.net/gh/ssyatelandisi/ssyatelandisi@master/docs/哆啦A梦：伴我同行2.m3u8",
                       pic: "https://cdn.jsdelivr.net/gh/ssyatelandisi/ssyatelandisi@master/docs/pic.webp",
                       type: "hls",
                     },
