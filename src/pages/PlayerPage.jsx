@@ -37,7 +37,7 @@ class PlayerPage extends Component {
                     playbackSpeed: [0.5, 0.75, 1.0, 1.25, 1.5],
                     video: {
                       url: this.state.url,
-                      type: "auto",
+                      type: "hls",
                     },
                   }}
                 />
