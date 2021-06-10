@@ -1,5 +1,3 @@
-$width: 100%;
-$height: auto;
 * {
   margin: 0;
 }
@@ -14,4 +12,15 @@ $height: auto;
 }
 button {
   margin: 0.5rem;
+}
+.dplayer {
+  width: 960px;
+  height: 620px;
+  margin: 0 auto;
+}
+@media screen and (max-width: 960px) {
+  .dplayer {
+    width: 100%;
+    height: 62vw;
+  }
 }
