@@ -2,7 +2,6 @@ import { Layout, Row, Col, Button } from "antd";
 import { Head, Foot } from "../components/HeadFoot";
 import { React, Component } from "react";
 import DPlayer from "react-dplayer";
-// import CryptoJS from "crypto-js";
 const { Content } = Layout;
 class PlayerPage extends Component {
   constructor(props) {

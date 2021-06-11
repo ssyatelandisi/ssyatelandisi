@@ -3,7 +3,6 @@ import { Head, Foot } from "../components/HeadFoot";
 import { Link } from "react-router-dom";
 import "antd/dist/antd.css";
 import { Component } from "react";
-import CryptoJS from "crypto-js";
 const { Content } = Layout;
 class ListPage extends Component {
   constructor(props) {
@@ -39,19 +38,7 @@ class ListPage extends Component {
                         state: {
                           referer: this.props.location.pathname,
                           name: item.name,
-                          url: (() => {
-                            let urlDecrypt = CryptoJS.AES.decrypt(
-                              item.urlEncrypt
-                                .replace(/\r/g, "")
-                                .replace(/\n/g, ""),
-                              "54520"
-                            ).toString(CryptoJS.enc.Utf8);
-                            let blob = new Blob([urlDecrypt], {
-                              type: "application/vnd.apple.mpegURL",
-                            });
-                            let url = URL.createObjectURL(blob);
-                            return url;
-                          })(),
+                          url: `https://cdn.jsdelivr.net/gh/ssyatelandisi/ssyatelandisi@master/docs/source/${item.url}.m3u8`
                         },
                       }}
                     >
@@ -93,7 +80,7 @@ class ListPage extends Component {
             }
           }
         });
-    } catch (error) {}
+    } catch (error) { }
   }
   componentDidMount() {
     document.title = this.state.title;
