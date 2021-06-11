@@ -68,7 +68,8 @@ class ListPage extends Component {
   }
   componentWillMount() {
     try {
-      fetch("https://cdn.jsdelivr.net/gh/ssyatelandisi/ssyatelandisi@master/docs/data.json")
+      // fetch("https://cdn.jsdelivr.net/gh/ssyatelandisi/ssyatelandisi@master/docs/data.json")
+      fetch("data.json")
         .then((res) => res.json())
         .then((res) => {
           for (let l of res) {

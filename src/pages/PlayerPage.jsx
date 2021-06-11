@@ -8,7 +8,6 @@ class PlayerPage extends Component {
     super(props);
     this.state = {
       title: this.props.match.params.name,
-      // referer: this.props.location.state.referer,
       list: this.props.match.params.list,
       name: this.props.location.state.name,
       url: this.props.location.state.url,
