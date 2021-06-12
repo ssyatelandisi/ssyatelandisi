@@ -69,7 +69,7 @@ class ListPage extends Component {
   }
   UNSAFE_componentWillMount() {
     try {
-      fetch("://cdn.jsdelivr.net/gh/ssyatelandisi/ssyatelandisi@master/docs/data.json")
+      fetch("//cdn.jsdelivr.net/gh/ssyatelandisi/ssyatelandisi@master/docs/data.json")
       // fetch("data.json")
         .then((res) => res.json())
         .then((res) => {
