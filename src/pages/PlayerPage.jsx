@@ -11,6 +11,7 @@ class PlayerPage extends Component {
       list: this.props.match.params.list,
       name: this.props.location.state.name,
       url: this.props.location.state.url,
+      subtitle: this.props.location.state.subtitle
     };
   }
   render() {
@@ -29,20 +30,29 @@ class PlayerPage extends Component {
               <div id="player_box">
                 <DPlayer
                   options={{
-                    hotkey: true,
-                    airplay: true,
                     volume: 1.0,
-                    playbackSpeed: [0.5, 0.75, 1.0, 1.25, 1.5],
+                    screenshot: true,
                     video: {
                       url: this.state.url,
                       type: "hls",
                     },
+                    subtitle: {
+                      url: this.state.subtitle,
+                      fontSize: "30px",
+                      bottom: "10%",
+                      color: "#fff"
+                    },
+                    contextmenu: [
+                    ],
                   }}
                 />
               </div>
               <Button shape="round" onClick={() => this.props.history.goBack()}>
                 返回
               </Button>
+              <div>
+                {this.props.location.state.name}
+              </div>
             </Col>
           </Row>
         </Content>

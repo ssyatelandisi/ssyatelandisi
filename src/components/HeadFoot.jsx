@@ -4,7 +4,9 @@ const { Header, Footer } = Layout;
 
 function Head() {
   return (
-    <Header style={{ textAlign: "center", backgroundColor: "#blue" }}></Header>
+    <Header style={{ textAlign: "center" }}>
+      <img src="logo.svg" alt="Logo" width="60px" height="60px"/>
+    </Header>
   );
 }
 

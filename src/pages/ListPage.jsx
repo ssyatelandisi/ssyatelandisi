@@ -38,7 +38,8 @@ class ListPage extends Component {
                         state: {
                           referer: this.props.location.pathname,
                           name: item.name,
-                          url: `https://cdn.jsdelivr.net/gh/ssyatelandisi/ssyatelandisi@master/docs/source/${item.url}.m3u8`
+                          url: item.url,
+                          subtitle: item.subtitle
                         },
                       }}
                     >
@@ -66,17 +67,24 @@ class ListPage extends Component {
       </Layout>
     );
   }
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     try {
-      // fetch("https://cdn.jsdelivr.net/gh/ssyatelandisi/ssyatelandisi@master/docs/data.json")
-      fetch("data.json")
+      fetch("://cdn.jsdelivr.net/gh/ssyatelandisi/ssyatelandisi@master/docs/data.json")
+      // fetch("data.json")
         .then((res) => res.json())
         .then((res) => {
           for (let l of res) {
-            if (l.name === this.props.match.params.name) {
+            if (l.name === new Buffer.from(this.props.match.params.name).toString("base64")) {
+              const list = l.list.map(item => {
+                return {
+                  name: new Buffer.from(item.name, "base64").toString(),
+                  url: `//cdn.jsdelivr.net/gh/ssyatelandisi/ssyatelandisi@master/docs/source/${item.url}.m3u8`,
+                  subtitle: item.subtitle !== undefined ? `//cdn.jsdelivr.net/gh/ssyatelandisi/ssyatelandisi@master/docs/source/${item.subtitle}.vtt` : ""
+                }
+              }
+              )
               this.setState({
-                list: l.name,
-                data: l.list,
+                data: list,
               });
             }
           }
