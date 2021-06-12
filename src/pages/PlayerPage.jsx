@@ -38,8 +38,8 @@ class PlayerPage extends Component {
                     },
                     subtitle: {
                       url: this.state.subtitle,
-                      fontSize: "30px",
-                      bottom: "10%",
+                      fontSize: "25px",
+                      bottom: "2%",
                       color: "#fff"
                     },
                     contextmenu: [
