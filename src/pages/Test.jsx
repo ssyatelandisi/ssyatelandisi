@@ -1,15 +1,18 @@
 import { Component } from "react";
+import { Duanwu } from "../components/Duanwu";
 class Test extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            data: [1, 2, 3, 4]
+            data: [1, 2, 3, 4],
+            duanwu: true
         }
     }
     render() {
-        return <><ul>
-            {this.state.data.map((v, i) => <li key={i}>{v}</li>)}
-        </ul></>
+        if (this.state.duanwu)
+            return <><Duanwu /></>
+        else
+            return <></>
     }
 }
 export default Test
