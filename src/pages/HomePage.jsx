@@ -1,4 +1,4 @@
-import { Layout, Row, Col } from "antd";
+import { Layout, Row, Col, Divider, List } from "antd";
 import { Head, Foot } from "../components/HeadFoot";
 import { Link } from "react-router-dom";
 import "antd/dist/antd.css";
@@ -9,6 +9,7 @@ class HomePage extends Component {
     super(props);
     this.state = {
       title: "React App",
+      data: []
     };
   }
   render() {
@@ -39,20 +40,32 @@ class HomePage extends Component {
             </Col>
           </Row>
           <Row>
-            <Col xs={24}>
-              <div style={{ textAlign: "center", margin: "1rem" }}>
-                <Link
-                  to={{
-                    pathname: "/list/哆啦A梦",
-                    state: {
-                      referer: this.props.location.pathname,
-                    },
-                  }}
-                  replace
-                >
-                  播放 哆啦A梦 尝尝鲜
-                </Link>
-              </div>
+            <Col xs={{ span: 24, offset: 0 }}
+              sm={{ span: 24, offset: 0 }}
+              md={{ span: 24, offset: 0 }}
+              xl={{ span: 18, offset: 3 }}>
+              <List
+                size="large"
+                bordered
+                dataSource={this.state.data}
+                renderItem={(item) => (
+                  <List.Item>
+                    <Link
+                      to={{
+                        pathname: `/list/${item}`,
+                        state: {
+                          referer: this.props.location.pathname,
+                          name: item.name,
+                          url: item.url,
+                          subtitle: item.subtitle
+                        },
+                      }}
+                    >
+                      播放 {item} 尝尝鲜
+                    </Link>
+                  </List.Item>
+                )}
+              />
             </Col>
           </Row>
         </Content>
@@ -62,6 +75,14 @@ class HomePage extends Component {
   }
   componentDidMount() {
     document.title = this.state.title;
+    fetch("data.json").then(res => res.json())
+      .then(data => {
+        let temp = []
+        for (let item of data) {
+          temp.push(new Buffer.from(item.name, "base64").toString())
+        }
+        this.setState({ data: temp })
+      })
   }
 }
 export default HomePage;

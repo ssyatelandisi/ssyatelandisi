@@ -24,8 +24,7 @@ class ListPage extends Component {
               xs={{ span: 24, offset: 0 }}
               sm={{ span: 24, offset: 0 }}
               md={{ span: 24, offset: 0 }}
-              xl={{ span: 18, offset: 3 }}
-            >
+              xl={{ span: 18, offset: 3 }}>
               <List
                 size="large"
                 bordered
@@ -55,16 +54,15 @@ class ListPage extends Component {
               xs={{ span: 24, offset: 0 }}
               sm={{ span: 24, offset: 0 }}
               md={{ span: 24, offset: 0 }}
-              xl={{ span: 18, offset: 3 }}
-            >
+              xl={{ span: 18, offset: 3 }}>
               <Button shape="round" onClick={() => this.props.history.goBack()}>
                 返回
               </Button>
             </Col>
           </Row>
-        </Content>
+        </Content >
         <Foot />
-      </Layout>
+      </Layout >
     );
   }
   UNSAFE_componentWillMount() {
