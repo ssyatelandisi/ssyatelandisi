@@ -15,6 +15,10 @@ class HomePage extends Component {
     };
   }
   render() {
+    let duanwu = null
+    if (new Date() >= new Date('2021/06/12 00:00:00') && new Date() < new Date('2021/06/15 00:00:00 ')) {
+      duanwu = <Duanwu />
+    }
     return (
       <Layout>
         <Head />
@@ -74,7 +78,7 @@ class HomePage extends Component {
           </Row>
         </Content>
         <Foot />
-        <Duanwu duanwu={this.state.duanwu} />
+        {duanwu}
       </Layout>
     );
   }
