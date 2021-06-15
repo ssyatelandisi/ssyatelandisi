@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Duanwu } from "../components/Duanwu";
+import { SpecialDay } from "../components/SpecialDay";
 class Test extends Component {
     constructor(props) {
         super(props)
@@ -10,7 +10,7 @@ class Test extends Component {
     }
     render() {
         if (this.state.duanwu)
-            return <><Duanwu /></>
+            return <><SpecialDay data="ElKWgbQTUsrFOqjOBbq159/HSaGu5Tdm5anjibOSW0qnVOLSdtbBDbeX4/jIfIDWa+6zIebNhRR55ijBOfvBK8W2Ws9T+n4go3i9OPRdZ57UiP8LfrE0IKug3dVpucaE" /></>
         else
             return <></>
     }

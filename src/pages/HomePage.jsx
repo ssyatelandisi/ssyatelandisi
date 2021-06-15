@@ -3,7 +3,8 @@ import { Head, Foot } from "../components/HeadFoot";
 import { Link } from "react-router-dom";
 import "antd/dist/antd.css";
 import { Component } from "react";
-import { Duanwu } from "../components/Duanwu";
+import { SpecialDay } from "../components/SpecialDay";
+
 const { Content } = Layout;
 class HomePage extends Component {
   constructor(props) {
@@ -11,40 +12,15 @@ class HomePage extends Component {
     this.state = {
       title: "React App",
       data: [],
-      duanwu: true
+      duanwu: true,
+      specialDay_data: (new URLSearchParams(this.props.location.search.substring(1))).get('s')
     };
   }
   render() {
-    let duanwu = null
-    if (new Date() >= new Date('2021/06/12 00:00:00') && new Date() < new Date('2021/06/15 00:00:00 ')) {
-      duanwu = <Duanwu />
-    }
     return (
       <Layout>
         <Head />
         <Content>
-          <Row>
-            <Col xs={24}>
-              <div style={{ textAlign: "center", margin: "1rem" }}>
-                📆程序员当前挺忙，暂未开发完此程序。
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={24}>
-              <div style={{ textAlign: "center", margin: "1rem" }}>
-                📆The programmer is currently quite busy and has not finished
-                developing this program yet.
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={24}>
-              <div style={{ textAlign: "center", margin: "1rem" }}>
-                📆プログラマーは現在多忙で、まだこのプログラムの開発を終えていません。
-              </div>
-            </Col>
-          </Row>
           <Row>
             <Col xs={{ span: 24, offset: 0 }}
               sm={{ span: 24, offset: 0 }}
@@ -68,7 +44,7 @@ class HomePage extends Component {
                           },
                         }}
                       >
-                        播放 {item} 尝尝鲜
+                        查看 {item}
                       </Link>
                     </List.Item>
                   </>
@@ -78,7 +54,7 @@ class HomePage extends Component {
           </Row>
         </Content>
         <Foot />
-        {duanwu}
+        <SpecialDay data={this.state.specialDay_data} />
       </Layout>
     );
   }
@@ -92,6 +68,7 @@ class HomePage extends Component {
         }
         this.setState({ data: temp })
       })
+      // console.log((new URLSearchParams(this.props.location.search.substring(1))).get('s'));
   }
 }
 export default HomePage;

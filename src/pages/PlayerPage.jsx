@@ -1,6 +1,7 @@
 import { Layout, Row, Col, Button } from "antd";
 import { Head, Foot } from "../components/HeadFoot";
 import { React, Component } from "react";
+import "./PlayerPage.scss"
 import DPlayer from "react-dplayer";
 const { Content } = Layout;
 class PlayerPage extends Component {

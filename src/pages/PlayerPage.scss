@@ -1,0 +1,26 @@
+#player_box {
+  .dplayer {
+    width: 960px;
+    height: 620px;
+    margin: 0 auto;
+  }
+  .dplayer-controller {
+    margin-bottom: 3px;
+  }
+  .dplayer-subtitle {
+    text-shadow: 2px 2px 2px black !important;
+    font-weight: 500 !important;
+    p {
+      margin-bottom: 18px;
+      &:nth-last-child(1) {
+        margin-bottom: 30px;
+      }
+    }
+  }
+  @media screen and (max-width: 960px) {
+    .dplayer {
+      width: 100%;
+      height: 62vw;
+    }
+  }
+}
