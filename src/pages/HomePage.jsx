@@ -68,7 +68,7 @@ class HomePage extends Component {
         }
         this.setState({ data: temp })
       })
-      // console.log((new URLSearchParams(this.props.location.search.substring(1))).get('s'));
+    // console.log((new URLSearchParams(this.props.location.search.substring(1))).get('s'));
   }
 }
 export default HomePage;

@@ -1,6 +1,5 @@
 import { Component } from "react"
 import "./SpecialDay.scss"
-import video from "./HappyBirthday.mp4"
 import DPlayer from "react-dplayer"
 import { CloseCircleTwoTone, SmileTwoTone } from '@ant-design/icons'
 class SpecialDay extends Component {
@@ -19,7 +18,6 @@ class SpecialDay extends Component {
         this.state = {
             // specialday: sessionStorage.getItem("specialday") !== "false" ? true : false,
             specialday: info !== false ? true : false,
-            url: video,
             json_obj: null,
             userName: info !== false ? info : null
         }
@@ -35,7 +33,7 @@ class SpecialDay extends Component {
                     volume: 1.0,
                     hotkey: false,
                     video: {
-                        url: video
+                        url: 'https://cdn.jsdelivr.net/gh/ssyatelandisi/happybirthday@main/HappyBirthday.mp4'
                     }
                 }}></DPlayer>
                 <CloseCircleTwoTone id="close" style={{ fontSize: '24px' }} onClick={this.hide.bind(this)} />
