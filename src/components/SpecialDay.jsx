@@ -14,10 +14,10 @@ class SpecialDay extends Component {
             if (Now >= new Date(json_obj.start_date) && Now < new Date(json_obj.end_date))
                 info = json_obj.name
         } catch (error) {
-            return
+            ;
         }
         this.state = {
-            // specialday: sessionStorage.getItem("specialday") !== "false" ? true : false
+            // specialday: sessionStorage.getItem("specialday") !== "false" ? true : false,
             specialday: info !== false ? true : false,
             url: video,
             json_obj: null,
@@ -49,7 +49,7 @@ class SpecialDay extends Component {
         this.setState({
             specialday: false
         })
-        sessionStorage.setItem("specialday", "false")
+        // sessionStorage.setItem("specialday", "false")
     }
 }
 export { SpecialDay }
