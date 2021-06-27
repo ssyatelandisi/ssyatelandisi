@@ -24,7 +24,7 @@
   h1 {
     font-weight: 700;
     text-shadow: 2px 2px 4px rgba(122, 122, 122, 0.5);
-    background-image:  -webkit-linear-gradient(90deg, #ff0000, #ffae00);
+    background-image: -webkit-linear-gradient(90deg, #ff0000, #ffae00);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -48,11 +48,97 @@
     filter: hue-rotate(-360deg);
   }
 }
-@-webkit-keyframes hue {
-  from {
-    filter: hue-rotate(0deg);
+.breeding-rhombus-spinner {
+  height: 65px;
+  width: 65px;
+  position: relative;
+  transform: rotate(45deg);
+  box-sizing: border-box;
+  * {
+    box-sizing: border-box;
   }
-  to {
-    filter: hue-rotate(-360deg);
+  .rhombus {
+    height: calc(65px / 7.5);
+    width: calc(65px / 7.5);
+    animation-duration: 2000ms;
+    top: calc(65px / 2.3077);
+    left: calc(65px / 2.3077);
+    background-color: #ff4a9f;
+    position: absolute;
+    animation-iteration-count: infinite;
+  }
+  .rhombus {
+    &:nth-child(2n + 0) {
+      margin-right: 0;
+    }
+    @for $var from 1 through 8 {
+      &.child-#{$var} {
+        animation-name: breeding-rhombus-spinner-animation-child-#{$var};
+        animation-delay: 100ms * $var;
+      }
+    }
+    .big {
+      height: calc(65px / 3);
+      width: calc(65px / 3);
+      animation-duration: 2000ms;
+      top: calc(65px / 3);
+      left: calc(65px / 3);
+      animation: breeding-rhombus-spinner-animation-child-big 2s infinite;
+      animation-delay: 0.5s;
+    }
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-1 {
+  50% {
+    transform: translate(-325%, -325%);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-2 {
+  50% {
+    transform: translate(0, -325%);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-3 {
+  50% {
+    transform: translate(325%, -325%);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-4 {
+  50% {
+    transform: translate(325%, 0);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-5 {
+  50% {
+    transform: translate(325%, 325%);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-6 {
+  50% {
+    transform: translate(0, 325%);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-7 {
+  50% {
+    transform: translate(-325%, 325%);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-8 {
+  50% {
+    transform: translate(-325%, 0);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-big {
+  50% {
+    transform: scale(0.5);
   }
 }

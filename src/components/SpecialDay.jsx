@@ -1,7 +1,7 @@
 import { Component } from "react"
 import "./SpecialDay.scss"
 import DPlayer from "react-dplayer"
-import { CloseCircleTwoTone, SmileTwoTone } from '@ant-design/icons'
+import { CloseCircleTwoTone } from '@ant-design/icons'
 class SpecialDay extends Component {
     constructor(props) {
         super(props)
@@ -16,8 +16,8 @@ class SpecialDay extends Component {
             ;
         }
         this.state = {
-            // specialday: sessionStorage.getItem("specialday") !== "false" ? true : false,
-            specialday: info !== false ? true : false,
+            // specialday: sessionStorage.getItem("specialday") !== "false" ? true : false,//调试控制
+            specialday: info !== false ? true : false,//调试控制
             json_obj: null,
             userName: info !== false ? info : null
         }
@@ -25,9 +25,21 @@ class SpecialDay extends Component {
     render() {
         if (this.state.specialday) {
             return <><div id="specialday">
-                <h1 style={{ textAlign: "center" }}>{this.state.userName} 同学</h1>
+                <h1 style={{ textAlign: "center" }}>{this.state.userName}</h1>
                 <h1 style={{ textAlign: "center" }}>生日快乐</h1>
-                <h1 style={{ textAlign: "center" }}><SmileTwoTone /></h1>
+                <div style={{ width: "65px", height: "85px", margin: "0 auto" }}>
+                    <div className="breeding-rhombus-spinner">
+                        <div className="rhombus child-1"></div>
+                        <div className="rhombus child-2"></div>
+                        <div className="rhombus child-3"></div>
+                        <div className="rhombus child-4"></div>
+                        <div className="rhombus child-5"></div>
+                        <div className="rhombus child-6"></div>
+                        <div className="rhombus child-7"></div>
+                        <div className="rhombus child-8"></div>
+                        <div className="rhombus big"></div>
+                    </div>
+                </div>
                 <DPlayer options={{
                     autoplay: true,
                     volume: 1.0,
