@@ -17,7 +17,7 @@ class Test extends Component {
         }
         const buf = (new Buffer.from(JSON.stringify(obj), 'utf-8')).map(i => i ^ 154)
         const b64 = new Buffer.from(buf).toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '')
-        this.setState({ link: `${window.location.origin}/#/?s=${b64}` })
+        this.setState({ link: `${window.location.origin}${window.location.pathname}#/?s=${b64}` })
     }
     handleNameChange(event) {
         this.setState({ username: event.target.value })
