@@ -7,11 +7,12 @@ class SpecialDay extends Component {
         super(props)
         var info = false
         try {
-            const json_string = new Buffer.from(this.props.data, 'base64').toString()
-            const json_obj = JSON.parse(json_string)
+            const b64 = this.props.data.replace(/-/g, '+').replace(/_/g, '/')
+            const json_enBuf = new Buffer.from(b64, 'base64')
+            const json_deBuf = json_enBuf.map(i => i ^ 154)
+            const json_obj = JSON.parse((new Buffer.from(json_deBuf)).toString('utf-8'))
             const Now = new Date()
-            if (Now >= new Date(json_obj.start_date) && Now < new Date(json_obj.end_date))
-                info = json_obj.name
+            if (Now >= new Date(json_obj.start) && Now < new Date(json_obj.end)) { info = json_obj.name }
         } catch (error) {
             ;
         }
@@ -53,7 +54,7 @@ class SpecialDay extends Component {
             </>
         }
         else
-            return null
+            return <></>
     }
     hide() {
         this.setState({
