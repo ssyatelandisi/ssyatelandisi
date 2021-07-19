@@ -46,7 +46,7 @@ class SpecialDay extends Component {
                     volume: 1.0,
                     hotkey: false,
                     video: {
-                        url: 'https://cdn.jsdelivr.net/gh/ssyatelandisi/happybirthday@main/HappyBirthday.mp4'
+                        url: 'https://cdn.jsdelivr.net/gh/ssyatelandisi/ssyatelandisi@master/public/Happybirthday.mp4'
                     }
                 }}></DPlayer>
                 <CloseCircleTwoTone id="close" style={{ fontSize: '24px' }} onClick={this.hide.bind(this)} />
