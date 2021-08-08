@@ -50,6 +50,7 @@ class SpecialDay extends Component {
                     }
                 }}></DPlayer>
                 <CloseCircleTwoTone id="close" style={{ fontSize: '24px' }} onClick={this.hide.bind(this)} />
+                <div style={{ textAlign: "center", paddingTop: "10px", paddingBottom: "10px" }}>长秀发，涨薪资<br />不长岁月不长膘</div>
             </div>
             </>
         }
