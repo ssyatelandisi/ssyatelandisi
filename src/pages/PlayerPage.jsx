@@ -35,7 +35,7 @@ class PlayerPage extends Component {
                     screenshot: true,
                     video: {
                       url: this.state.url,
-                      type: "hls",
+                      type: "auto",
                     },
                     subtitle: {
                       url: this.state.subtitle,
