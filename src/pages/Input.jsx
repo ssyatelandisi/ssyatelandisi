@@ -20,7 +20,7 @@ class Input extends Component {
         this.setState({ url: new Buffer.from(buf_0).toString() })
         if (buf.length === 2) {
             const buf_1 = new Buffer.from(buf[1], 'base64').map((e, i) => e ^ ((i + 0xAF) % 255))
-            fetch(new Buffer.from(buf_1).toString()).then(res => res.text).then(res => {
+            fetch(new Buffer.from(buf_1).toString()).then(res => res.text()).then(res => {
                 this.setState({ subtitle: URL.createObjectURL(new Blob([res], { "type": "text/vtt" })) })
             })
         }
@@ -66,7 +66,7 @@ class Input extends Component {
                     </Link>
                     <hr />
                     <textarea style={{ padding: '.3rem', width: 'calc(100% - 2rem)', marginLeft: '1rem' }} rows='5' type="text" name="base64" id="base64" onChange={e => this.handleBase64Change(e)} placeholder='需要加密的内容' />
-                    <div style={{ margin: '1rem', wordBreak: 'break-all' }}>{this.state.base64}</div>
+                    <div style={{ margin: '1rem', wordBreak: 'break-all' }}><code>{this.state.base64}</code></div>
                 </Content>
                 <Foot />
             </Layout>
