@@ -20,8 +20,8 @@ class Input extends Component {
         console.log(this.state.url);
     }
     handleBase64Change(event) {
-        const buf = new Buffer.from(event.target.value.replace(/\+/g, '-').replace(/\//g, '_')).map((e, i) => e ^ ((i + 0xAF) % 255))
-        this.setState({ base64: new Buffer.from(buf).toString("base64").replace(/=+/g, '') })
+        const buf = new Buffer.from(event.target.value).map((e, i) => e ^ ((i + 0xAF) % 255))
+        this.setState({ base64: new Buffer.from(buf).toString("base64").replace(/=+/g, '').replace(/\+/g, '-').replace(/\//g, '_') })
     }
     render() {
         return <>
