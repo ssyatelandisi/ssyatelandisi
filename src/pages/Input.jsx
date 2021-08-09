@@ -20,7 +20,9 @@ class Input extends Component {
         this.setState({ url: new Buffer.from(buf_0).toString() })
         if (buf.length === 2) {
             const buf_1 = new Buffer.from(buf[1], 'base64').map((e, i) => e ^ ((i + 0xAF) % 255))
-            this.setState({ subtitle: new Buffer.from(buf_1).toString() })
+            fetch(new Buffer.from(buf_1).toString()).then(res => res.text).then(res => {
+                this.setState({ subtitle: URL.createObjectURL(new Blob([res], { "type": "text/vtt" })) })
+            })
         }
         console.clear()
         console.log(this.state.url);
