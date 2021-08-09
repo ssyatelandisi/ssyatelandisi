@@ -9,13 +9,17 @@ class Input extends Component {
         this.state = {
             name: '播放器',
             url: '',
+            subtitle: '',
             base64: ''
         }
 
     }
     handleUrlChange(event) {
-        const buf = new Buffer.from(event.target.value.replace(/-/g, '+').replace(/_/g, '/'), 'base64').map((e, i) => e ^ ((i + 0xAF) % 255))
-        this.setState({ url: new Buffer.from(buf).toString() })
+        const buf = event.target.value.replace(/-/g, '+').replace(/_/g, '/').split('|')
+        const buf_0 = new Buffer.from(buf[0], 'base64').map((e, i) => e ^ ((i + 0xAF) % 255))
+        const buf_1 = new Buffer.from(buf[1], 'base64').map((e, i) => e ^ ((i + 0xAF) % 255))
+        this.setState({ url: new Buffer.from(buf_0).toString() })
+        this.setState({ subtitle: new Buffer.from(buf_1).toString() })
         console.clear()
         console.log(this.state.url);
     }
@@ -37,7 +41,7 @@ class Input extends Component {
                                 referer: this.props.location.pathname,
                                 name: this.state.name,
                                 url: this.state.url,
-                                subtitle: ''
+                                subtitle: this.state.subtitle
                             },
                         }}
                     >
