@@ -16,11 +16,13 @@ class Input extends Component {
     }
     handleUrlChange(event) {
         const buf = event.target.value.replace(/-/g, '+').replace(/_/g, '/').split('|')
-        const buf_0 = new Buffer.from(buf[0], 'base64').map((e, i) => e ^ ((i + 0xAF) % 255))
-        this.setState({ url: new Buffer.from(buf_0).toString() })
-        if (buf.length === 2) {
-            const buf_1 = new Buffer.from(buf[1], 'base64').map((e, i) => e ^ ((i + 0xAF) % 255))
-            fetch(new Buffer.from(buf_1).toString()).then(res => res.text()).then(res => {
+        const buf_0 = new Buffer.from(buf[0], 'base64')
+        const buf_0_length = buf_0.length
+        this.setState({ url: new Buffer.from(buf_0.map((e, i) => e ^ ((buf_0_length - i + 0xAF) % 255))).toString() })
+        if (buf.length > 1) {
+            const buf_1 = new Buffer.from(buf[1], 'base64')
+            const buf_1_length = buf[1].length
+            fetch(new Buffer.from(buf_1.map((e, i) => e ^ ((buf_1_length - i + 0xAF) % 255))).toString()).then(res => res.text()).then(res => {
                 this.setState({ subtitle: URL.createObjectURL(new Blob([res], { "type": "text/vtt" })) })
             })
         }
@@ -28,7 +30,8 @@ class Input extends Component {
         console.log(this.state.url);
     }
     handleBase64Change(event) {
-        const buf = new Buffer.from(event.target.value).map((e, i) => e ^ ((i + 0xAF) % 255))
+        const buf_length = event.target.value.length
+        const buf = new Buffer.from(event.target.value).map((e, i) => e ^ ((buf_length - i + 0xAF) % 255))
         this.setState({
             base64: new Buffer.from(buf).toString("base64").replace(/=+/g, '').replace(/\+/g, '-').replace(/\//g, '_'),
             url: event.target.value
