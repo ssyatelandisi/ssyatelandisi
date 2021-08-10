@@ -73,6 +73,8 @@ class Input extends Component {
                     <hr />
                     <textarea style={{ padding: '.3rem', width: 'calc(100% - 2rem)', marginLeft: '1rem' }} rows='5' type="text" name="base64" id="base64" onChange={e => this.handleBase64Change(e)} placeholder='需要加密的内容' />
                     <div style={{ margin: '1rem', wordBreak: 'break-all' }}><code>{this.state.base64}</code></div>
+                    <hr />
+                    <div style={{ margin: '1rem', wordBreak: 'break-all' }}><Link to={{ pathname: `/iplayer/${this.state.base64}` }}>{window.location.origin}{window.location.pathname}#/iplayer/{this.state.base64}</Link></div>
                 </Content>
                 <Foot />
             </Layout>

@@ -48,7 +48,7 @@ class PlayerPage extends Component {
                   }}
                 />
               </div>
-              <div>{this.props.location.state.name}</div>
+              <div>{this.state.name}</div>
               <div><Button shape="round" onClick={() => this.props.history.goBack()}>返回</Button></div>
             </Col>
           </Row>
