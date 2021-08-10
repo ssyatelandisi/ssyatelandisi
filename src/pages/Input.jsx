@@ -29,7 +29,10 @@ class Input extends Component {
     }
     handleBase64Change(event) {
         const buf = new Buffer.from(event.target.value).map((e, i) => e ^ ((i + 0xAF) % 255))
-        this.setState({ base64: new Buffer.from(buf).toString("base64").replace(/=+/g, '').replace(/\+/g, '-').replace(/\//g, '_') })
+        this.setState({
+            base64: new Buffer.from(buf).toString("base64").replace(/=+/g, '').replace(/\+/g, '-').replace(/\//g, '_'),
+            url: event.target.value
+        })
     }
     handleSubtitleChange(event) {
         sessionStorage.setItem("subtitle", event.target.value)
