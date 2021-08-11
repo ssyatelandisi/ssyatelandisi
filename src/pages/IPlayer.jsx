@@ -7,7 +7,7 @@ const { Content } = Layout;
 class IPlayer extends Component {
     constructor(props) {
         super(props);
-        const buf = this.props.match.params.encdata.replace(/-/g, '+').replace(/_/g, '/').split('|')
+        const buf = this.props.match.params.encdata.replace(/-/g, '+').replace(/_/g, '/').split('.')
         const buf_0 = new Buffer.from(buf[0], 'base64')
         const buf_0_length = buf_0.length
         const url = new Buffer.from(buf_0.map((e, i) => e ^ ((buf_0_length - i + 0xAF) % 255))).toString()

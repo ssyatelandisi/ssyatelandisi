@@ -15,7 +15,7 @@ class Input extends Component {
 
     }
     handleUrlChange(event) {
-        const buf = event.target.value.replace(/-/g, '+').replace(/_/g, '/').split('|')
+        const buf = event.target.value.replace(/-/g, '+').replace(/_/g, '/').split('.')
         const buf_0 = new Buffer.from(buf[0], 'base64')
         const buf_0_length = buf_0.length
         this.setState({ url: new Buffer.from(buf_0.map((e, i) => e ^ ((buf_0_length - i + 0xAF) % 255))).toString() })
