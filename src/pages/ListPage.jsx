@@ -38,7 +38,8 @@ class ListPage extends Component {
                           referer: this.props.location.pathname,
                           name: item.name,
                           url: item.url,
-                          subtitle: item.subtitle
+                          subtitle: item.subtitle,
+                          type: 'auto'
                         },
                       }}
                     >

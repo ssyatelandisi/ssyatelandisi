@@ -12,7 +12,8 @@ class PlayerPage extends Component {
       list: this.props.match.params.list,
       name: this.props.location.state.name,
       url: this.props.location.state.url,
-      subtitle: this.props.location.state.subtitle
+      subtitle: this.props.location.state.subtitle,
+      type: this.props.location.state.type
     };
   }
   render() {
@@ -35,7 +36,7 @@ class PlayerPage extends Component {
                     screenshot: true,
                     video: {
                       url: this.state.url,
-                      type: "auto",
+                      type: this.state.type,
                     },
                     subtitle: {
                       url: this.state.subtitle,
