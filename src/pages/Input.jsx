@@ -10,7 +10,8 @@ class Input extends Component {
             name: '播放器',
             url: '',
             subtitle: '',
-            base64: ''
+            base64: '',
+            vipjx: window.location.origin
         }
 
     }
@@ -42,6 +43,9 @@ class Input extends Component {
     }
     handleM3u8Change(event) {
         sessionStorage.setItem("m3u8", event.target.value)
+    }
+    handleVipJxChange(event) {
+        this.setState({ vipjx: event.target.value })
     }
     generateSubtitle(event) {
         if (sessionStorage.getItem("subtitle")) {
@@ -106,6 +110,12 @@ class Input extends Component {
                     >
                         <Button type='primary' style={{ marginLeft: '1rem' }}>播放</Button>
                     </Link>
+                    <hr />
+                    <h1 style={{ margin: '1rem' }}>VIP解析</h1>
+                    <textarea style={{ padding: '.3rem', width: 'calc(100% - 2rem)', marginLeft: '1rem' }} rows='5' type="text" name="vipjx" id="vipjx" onChange={e => this.handleVipJxChange(e)} placeholder='常规视频网站播放页面网址' />
+                    <a href={`${window.location.origin}${window.location.pathname}#jx?url=${this.state.vipjx}`}>
+                        <Button type='primary' style={{ marginLeft: '1rem' }}>VIP解析</Button>
+                    </a>
                 </Content>
                 <Foot />
             </Layout>

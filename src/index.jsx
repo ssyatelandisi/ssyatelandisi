@@ -6,6 +6,7 @@ import ListPage from "./pages/ListPage";
 import PlayerPage from "./pages/PlayerPage";
 import NoMatchPage from "./pages/NoMatchPage";
 import Input from "./pages/Input";
+import VIPJX from "./pages/VIPJX";
 import IPlayer from "./pages/IPlayer";
 import Test from "./pages/Test";
 import "./index.scss";
@@ -17,6 +18,7 @@ ReactDOM.render(
       <Route path="/player/:name" component={PlayerPage} />
       <Route path="/input" component={Input} />
       <Route path="/iplayer/:encdata" component={IPlayer} />
+      <Route path="/jx" component={VIPJX} />
       <Route path="/test" component={Test} />
       <Route path="*" component={NoMatchPage} />
     </Switch>
