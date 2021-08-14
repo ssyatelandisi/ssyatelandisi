@@ -4,7 +4,7 @@ import { React, Component } from "react";
 import "./PlayerPage.scss"
 const { Content } = Layout;
 
-class VIPJX extends Component {
+class VIPjx extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -36,4 +36,4 @@ class VIPJX extends Component {
         </>
     }
 }
-export default VIPJX
+export default VIPjx
