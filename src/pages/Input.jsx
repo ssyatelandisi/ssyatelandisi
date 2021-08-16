@@ -2,6 +2,7 @@ import { Component } from "react";
 import { Layout, Button } from "antd";
 import { Link } from "react-router-dom";
 import { Head, Foot } from "../components/HeadFoot";
+import { decrypt, encrypt, randomStr } from "../app.js";
 const { Content } = Layout;
 class Input extends Component {
     constructor(props) {
@@ -13,17 +14,18 @@ class Input extends Component {
             base64: '',
             vipjx: window.location.origin
         }
-
     }
     handleUrlChange(event) {
-        const buf = event.target.value.replace(/-/g, '+').replace(/_/g, '/').split('.')
-        const buf_0 = new Buffer.from(buf[0], 'base64')
-        const buf_0_length = buf_0.length
-        this.setState({ url: new Buffer.from(buf_0.map((e, i) => e ^ ((buf_0_length - i + 0xAF) % 255))).toString() })
-        if (buf.length > 1) {
-            const buf_1 = new Buffer.from(buf[1], 'base64')
-            const buf_1_length = buf[1].length
-            fetch(new Buffer.from(buf_1.map((e, i) => e ^ ((buf_1_length - i + 0xAF) % 255))).toString()).then(res => res.text()).then(res => {
+        const base_buf = event.target.value.split('.')
+        const results = []
+        for (let kbuf of base_buf) {
+            let [key, content] = kbuf.split('!')
+            const dec = decrypt(content, key)
+            results.push(new Buffer.from(dec).toString())
+        }
+        this.setState({ url: results[1] })
+        if (results.length > 1) {
+            fetch(results[2]).then(res => res.text()).then(res => {
                 this.setState({ subtitle: URL.createObjectURL(new Blob([res], { "type": "text/vtt" })) })
             })
         }
@@ -31,10 +33,10 @@ class Input extends Component {
         console.log(this.state.url);
     }
     handleBase64Change(event) {
-        const buf_length = event.target.value.length
-        const buf = new Buffer.from(event.target.value).map((e, i) => e ^ ((buf_length - i + 0xAF) % 255))
+        const key = randomStr(5)
+        const enc = encrypt(event.target.value, key)
         this.setState({
-            base64: new Buffer.from(buf).toString("base64").replace(/=+/g, '').replace(/\+/g, '-').replace(/\//g, '_'),
+            base64: key + '!' + enc,
             url: event.target.value
         })
     }

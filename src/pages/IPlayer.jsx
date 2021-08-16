@@ -3,25 +3,23 @@ import { Head, Foot } from "../components/HeadFoot";
 import { React, Component } from "react";
 import "./PlayerPage.scss"
 import DPlayer from "react-dplayer";
+import { decrypt } from "../app";
 const { Content } = Layout;
 class IPlayer extends Component {
     constructor(props) {
         super(props);
-        const buf = this.props.match.params.encdata.replace(/-/g, '+').replace(/_/g, '/').split('.')
-        const buf_0 = new Buffer.from(buf[0], 'base64')
-        const buf_0_length = buf_0.length
-        const url = new Buffer.from(buf_0.map((e, i) => e ^ ((buf_0_length - i + 0xAF) % 255))).toString()
-        let sub_url = ''
-        if (buf.length > 1) {
-            const buf_1 = new Buffer.from(buf[1], 'base64')
-            const buf_1_length = buf_1.length
-            sub_url = new Buffer.from(buf_1.map((e, i) => e ^ ((buf_1_length - i + 0xAF) % 255))).toString()
+        const base_buf = this.props.match.params.encdata.split('.')
+        const results = []
+        for (let kbuf of base_buf) {
+            let [key, content] = kbuf.split('!')
+            const dec = decrypt(content, key)
+            results.push(new Buffer.from(dec).toString())
         }
         this.state = {
             title: '播放器',
             name: '播放器',
-            url: url,
-            subtitle: sub_url ? sub_url : ''
+            url: results[0],
+            subtitle: results.length > 1 ? results[1] : ''
         };
     }
     render() {
