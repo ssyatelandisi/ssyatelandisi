@@ -1,4 +1,4 @@
-import { Layout, Row } from "antd";
+import { Layout, Row, Input } from "antd";
 import { Head, Foot } from "../components/HeadFoot";
 import { React, Component } from "react";
 import { decrypt } from "../app";
@@ -10,11 +10,13 @@ class Iframe extends Component {
             const [key, content] = this.props.match.params.url.split('!')
             this.state = {
                 enc: content,
+                input: 'none',
                 url: decrypt(content, key)
             }
         } else {
             this.state = {
                 enc: this.props.match.params.url,
+                input: 'block',
                 url: this.props.match.params.url
             }
         }
@@ -29,8 +31,8 @@ class Iframe extends Component {
                 <Head></Head>
                 <Content>
                     <Row>
+                        <Input style={{ display: this.state.input }} placeholder="Basic usage" onChange={e => this.handleChange(e)} placeHolder='密码' />
                         <iframe style={{ minHeight: '100vh', minWidth: '100%', border: 0 }} seamless sandbox='allow-same-origin allow-scripts' src={this.state.url} allowFullScreen={true} title="iframe"></iframe>
-                        <input type="text" name="key" id="key" onChange={e => this.handleChange(e)} placeholder='密码' />
                     </Row>
                 </Content>
                 <Foot></Foot>

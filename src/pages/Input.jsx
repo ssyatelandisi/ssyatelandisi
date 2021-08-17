@@ -12,6 +12,8 @@ class Input extends Component {
             url: '',
             subtitle: '',
             base64: '',
+            enc: '',
+            key: '',
             vipjx: window.location.origin
         }
     }
@@ -36,7 +38,9 @@ class Input extends Component {
         const key = randomStr(5)
         const enc = encrypt(event.target.value, key)
         this.setState({
-            base64: key + '!' + enc,
+            base64: enc.length > 0 ? key + '!' + enc : '',
+            enc,
+            key: enc.length > 0 ? key : '',
             url: event.target.value
         })
     }
@@ -71,10 +75,11 @@ class Input extends Component {
             <Layout>
                 <Head />
                 <Content>
+                    <h1 style={{ margin: '1rem' }}>解密播放</h1>
                     <div style={{ marginLeft: '1rem' }} ><label htmlFor="url">播放地址：</label></div>
                     <textarea style={{ padding: '.3rem', width: 'calc(100% - 2rem)', marginLeft: '1rem' }} rows='5' type="text" name="url" id="url" onChange={e => this.handleUrlChange(e)} placeholder='已经加密的地址' />
                     <textarea style={{ padding: '.3rem', width: 'calc(100% - 2rem)', marginLeft: '1rem' }} rows='5' type="text" name="subtitle" id="subtitle" onChange={e => this.handleSubtitleChange(e)} placeholder='可选，vtt字幕内容' />
-                    <div><Button type='dashed' style={{ marginLeft: '1rem' }} onClick={e => this.generateSubtitle(e)}>添加字幕</Button></div>
+                    <div><Button type='default' style={{ marginLeft: '1rem' }} onClick={e => this.generateSubtitle(e)}>添加字幕</Button></div>
                     <Link
                         to={{
                             pathname: `/player/${this.state.name}`,
@@ -90,14 +95,16 @@ class Input extends Component {
                         <Button type='primary' style={{ marginLeft: '1rem' }}>确认</Button>
                     </Link>
                     <hr />
+                    <h1 style={{ margin: '1rem' }}>加密数据</h1>
                     <textarea style={{ padding: '.3rem', width: 'calc(100% - 2rem)', marginLeft: '1rem' }} rows='5' type="text" name="base64" id="base64" onChange={e => this.handleBase64Change(e)} placeholder='需要加密的内容' />
                     <div style={{ margin: '1rem', wordBreak: 'break-all' }}><code>{this.state.base64}</code></div>
-                    <hr />
                     <div style={{ margin: '1rem', wordBreak: 'break-all' }}><Link to={{ pathname: `/iplayer/${this.state.base64}` }}>{window.location.origin}{window.location.pathname}#/iplayer/{this.state.base64}</Link></div>
-                    <hr />
+                    <div style={{ margin: '1rem', wordBreak: 'break-all' }}><Link to={{ pathname: `/iframe/${this.state.base64}` }}>{window.location.origin}{window.location.pathname}#/iframe/{this.state.base64}</Link></div>
+                    <div style={{ margin: '1rem', wordBreak: 'break-all' }}>链接：{window.location.origin}{window.location.pathname}#/iframe/{this.state.enc}<br />密码：{this.state.key}</div>
+                    <h1 style={{ margin: '1rem' }}>m3u8内容播放器</h1>
                     <textarea style={{ padding: '.3rem', width: 'calc(100% - 2rem)', marginLeft: '1rem' }} rows='5' type="text" name="m3u8" onChange={e => this.handleM3u8Change(e)} placeholder='m3u8内容' />
                     <textarea style={{ padding: '.3rem', width: 'calc(100% - 2rem)', marginLeft: '1rem' }} rows='5' type="text" name="subtitle" onChange={e => this.handleSubtitleChange(e)} placeholder='可选，vtt字幕内容' />
-                    <div><Button type='dashed' style={{ marginLeft: '1rem' }} onClick={e => this.generateM3u8(e)}>确认输入</Button></div>
+                    <div><Button type='default' style={{ marginLeft: '1rem' }} onClick={e => this.generateM3u8(e)}>确认输入</Button></div>
                     <Link
                         to={{
                             pathname: `/player/${this.state.name}`,

@@ -1,4 +1,4 @@
-import { Layout, Row, Col, List } from "antd";
+import { Layout, Row, Col, List, Button } from "antd";
 import { Head, Foot } from "../components/HeadFoot";
 import { Link } from "react-router-dom";
 import "antd/dist/antd.css";
@@ -26,6 +26,7 @@ class HomePage extends Component {
               sm={{ span: 24, offset: 0 }}
               md={{ span: 24, offset: 0 }}
               xl={{ span: 18, offset: 3 }}>
+              <Link to={{ pathname: '/input' }}><Button type='link' block>实验功能</Button></Link>
               <List
                 size="large"
                 bordered
