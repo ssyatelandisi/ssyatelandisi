@@ -100,7 +100,7 @@ class Input extends Component {
                     <div style={{ margin: '1rem', wordBreak: 'break-all' }}><code>{this.state.base64}</code></div>
                     <div style={{ margin: '1rem', wordBreak: 'break-all' }}><Link to={{ pathname: `/iplayer/${this.state.base64}` }}>{window.location.origin}{window.location.pathname}#/iplayer/{this.state.base64}</Link></div>
                     <div style={{ margin: '1rem', wordBreak: 'break-all' }}><Link to={{ pathname: `/iframe/${this.state.base64}` }}>{window.location.origin}{window.location.pathname}#/iframe/{this.state.base64}</Link></div>
-                    <div style={{ margin: '1rem', wordBreak: 'break-all' }}>链接：{window.location.origin}{window.location.pathname}#/iframe/{this.state.enc}<br />密码：{this.state.key}</div>
+                    <div style={{ margin: '1rem', wordBreak: 'break-all' }}>链接：<Link to={{ pathname: `/iframe/${this.state.enc}` }}>{window.location.origin}{window.location.pathname}#/iframe/{this.state.enc}</Link><br />密码：{this.state.key}</div>
                     <h1 style={{ margin: '1rem' }}>m3u8内容播放器</h1>
                     <textarea style={{ padding: '.3rem', width: 'calc(100% - 2rem)', marginLeft: '1rem' }} rows='5' type="text" name="m3u8" onChange={e => this.handleM3u8Change(e)} placeholder='m3u8内容' />
                     <textarea style={{ padding: '.3rem', width: 'calc(100% - 2rem)', marginLeft: '1rem' }} rows='5' type="text" name="subtitle" onChange={e => this.handleSubtitleChange(e)} placeholder='可选，vtt字幕内容' />
