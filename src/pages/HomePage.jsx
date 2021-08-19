@@ -22,9 +22,9 @@ class HomePage extends Component {
         <Head />
         <Content>
           <Row>
-            <Col xs={{ span: 24, offset: 0 }}
-              sm={{ span: 24, offset: 0 }}
-              md={{ span: 24, offset: 0 }}
+            <Col xs={{ span: 22, offset: 1 }}
+              sm={{ span: 22, offset: 1 }}
+              md={{ span: 22, offset: 1 }}
               xl={{ span: 18, offset: 3 }}>
               <Link to={{ pathname: '/input' }}><Button type='link' style={{ paddingLeft: 24 }}>实验功能</Button></Link>
               <List

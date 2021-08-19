@@ -48,7 +48,7 @@ class Test extends Component {
                 <Row>
                     <Col xs={{ span: 22, offset: 1 }}
                         sm={{ span: 22, offset: 1 }}
-                        md={{ span: 24, offset: 0 }}
+                        md={{ span: 22, offset: 1 }}
                         xl={{ span: 18, offset: 3 }}>
                         <Input style={{ margin: '0.5em 0' }} type='text' placeholder='名称' onChange={this.handleNameChange} />
                         <Input style={{ margin: '0.5em 0' }} type='text' placeholder='开始时间' onChange={this.handleStartChange} />
