@@ -14,7 +14,7 @@ class HomePage extends Component {
       data: [],
       duanwu: true,
       specialDay_data: (new URLSearchParams(this.props.location.search.substring(1))).get('s')
-    };
+    }
   }
   render() {
     return (
@@ -26,7 +26,7 @@ class HomePage extends Component {
               sm={{ span: 24, offset: 0 }}
               md={{ span: 24, offset: 0 }}
               xl={{ span: 18, offset: 3 }}>
-              <Link to={{ pathname: '/input' }}><Button type='link' block>实验功能</Button></Link>
+              <Link to={{ pathname: '/input' }}><Button type='link' style={{ paddingLeft: 24 }}>实验功能</Button></Link>
               <List
                 size="large"
                 bordered

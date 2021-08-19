@@ -1,4 +1,9 @@
-import { Component } from "react"
+import { Layout, Row, Col, Input } from 'antd';
+import { Head, Foot } from '../components/HeadFoot';
+import { React, Component } from 'react';
+import { encrypt, randomStr } from '../app';
+const { Content } = Layout;
+const { TextArea } = Input
 class Test extends Component {
     constructor(props) {
         super(props)
@@ -6,44 +11,56 @@ class Test extends Component {
             link: '',
             username: '',
             start: '',
-            end: ''
+            end: '',
+            text: ''
         }
     }
     generate() {
         const obj = {
             name: this.state.username,
             start: this.state.start,
-            end: this.state.end
+            end: this.state.end,
+            text: this.state.text
         }
-        const buf = (new Buffer.from(JSON.stringify(obj), 'utf-8')).map(i => i ^ 154)
-        const b64 = new Buffer.from(buf).toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '')
-        this.setState({ link: `${window.location.origin}${window.location.pathname}#/?s=${b64}` })
+        const key = randomStr(1).toUpperCase()
+        this.setState({ link: `${window.location.origin}${window.location.pathname}#/?s=${key}!${encrypt(JSON.stringify(obj), key)}` })
     }
-    handleNameChange(event) {
+    handleNameChange = (event) => {
         this.setState({ username: event.target.value })
+        this.generate()
     }
-    handleStartChange(event) {
+    handleStartChange = (event) => {
         this.setState({ start: event.target.value })
+        this.generate()
     }
-    handleEndChange(event) {
+    handleEndChange = (event) => {
         this.setState({ end: event.target.value })
+        this.generate()
+    }
+    textChange = event => {
+        this.setState({ text: event.target.value })
+        this.generate()
     }
     render() {
-        return <>
-            <div style={{ marginLeft: '1rem' }} ><label htmlFor="name">名称</label></div>
-            <input style={{ marginLeft: '1rem' }} type="text" name="name" id="name" onChange={e => this.handleNameChange(e)} />
-            <hr />
-            <div style={{ marginLeft: '1rem' }} ><label htmlFor="start">开始时间</label></div>
-            <input style={{ marginLeft: '1rem' }} type="text" name="start" id="start" onChange={e => this.handleStartChange(e)} />
-            <hr />
-            <div style={{ marginLeft: '1rem' }} ><label htmlFor="end">结束时间</label></div>
-            <input style={{ marginLeft: '1rem' }} type="text" name="end" id="end" onChange={e => this.handleEndChange(e)} />
-            <hr />
-            <button style={{ marginLeft: '1rem' }} onClick={e => this.generate(e)}>确认</button>
-            <hr />
-            <div style={{ padding: '0 1rem' }}><textarea style={{ minWidth: '100%' }} rows="7" value={this.state.link}></textarea></div>
-            <div><a href={this.state.link}>{this.state.link}</a></div>
-        </>
+        return <Layout>
+            <Head></Head>
+            <Content>
+                <Row>
+                    <Col xs={{ span: 22, offset: 1 }}
+                        sm={{ span: 22, offset: 1 }}
+                        md={{ span: 24, offset: 0 }}
+                        xl={{ span: 18, offset: 3 }}>
+                        <Input style={{ margin: '0.5em 0' }} type='text' placeholder='名称' onChange={this.handleNameChange} />
+                        <Input style={{ margin: '0.5em 0' }} type='text' placeholder='开始时间' onChange={this.handleStartChange} />
+                        <Input style={{ margin: '0.5em 0' }} type='text' placeholder='结束时间' onChange={this.handleEndChange} />
+                        <TextArea style={{ margin: '0.5em 0' }} rows={2} value={this.state.text} placeholder='留言内容' onChange={this.textChange} />
+                        <TextArea style={{ margin: '0.5em 0' }} rows={4} value={this.state.link} placeholder='结果' readOnly />
+                        <div style={{ wordBreak: 'break-all' }}><a href={this.state.link}>{this.state.link}</a></div>
+                    </Col>
+                </Row>
+            </Content>
+            <Foot></Foot>
+        </Layout >
     }
 }
 export default Test
