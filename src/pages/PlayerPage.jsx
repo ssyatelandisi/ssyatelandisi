@@ -1,8 +1,8 @@
-import { Layout, Row, Col, Button } from "antd";
-import { Head, Foot } from "../components/HeadFoot";
-import { React, Component } from "react";
-import "./PlayerPage.scss"
-import DPlayer from "react-dplayer";
+import { Layout, Row, Col, Button } from 'antd';
+import { Head, Foot } from '../components/HeadFoot';
+import { React, Component } from 'react';
+import './PlayerPage.scss'
+import DPlayer from 'react-dplayer';
 const { Content } = Layout;
 class PlayerPage extends Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class PlayerPage extends Component {
               lg={{ span: 22, offset: 1 }}
               xxl={{ span: 12, offset: 6 }}
             >
-              <div id="player_box">
+              <div id='player_box'>
                 <DPlayer
                   options={{
                     volume: 1.0,
@@ -40,9 +40,9 @@ class PlayerPage extends Component {
                     },
                     subtitle: {
                       url: this.state.subtitle,
-                      fontSize: "25px",
-                      bottom: "2%",
-                      color: "#fff"
+                      fontSize: '25px',
+                      bottom: '2%',
+                      color: '#fff'
                     },
                     contextmenu: [
                     ],
@@ -50,7 +50,7 @@ class PlayerPage extends Component {
                 />
               </div>
               <div>{this.state.name}</div>
-              <div><Button shape="round" onClick={() => this.props.history.goBack()}>返回</Button></div>
+              <div><Button shape='round' onClick={() => this.props.history.goBack()}>返回</Button></div>
             </Col>
           </Row>
         </Content>

@@ -1,6 +1,10 @@
 const randomNum = (num) => parseInt(Math.random() * num)
-/* 返回num以内长度的随机字符 */
 const randomStr = (num) => {
+  /**
+  * 返回1~num以内长度的随机字符 
+  * @param num 长度
+  * @return str 返回字符串
+  */
   const src = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz'
   let s = ''
   for (let i = 0; i < 1 + randomNum(num); i++) {

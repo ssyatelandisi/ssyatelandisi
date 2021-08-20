@@ -1,7 +1,7 @@
-import { Layout, Row, Col, Button } from "antd";
-import { Head, Foot } from "../components/HeadFoot";
-import { React, Component } from "react";
-import "./PlayerPage.scss"
+import { Layout, Row, Col, Button } from 'antd';
+import { Head, Foot } from '../components/HeadFoot';
+import { React, Component } from 'react';
+import './PlayerPage.scss'
 const { Content } = Layout;
 
 class VIPjx extends Component {
@@ -24,10 +24,10 @@ class VIPjx extends Component {
                             lg={{ span: 22, offset: 1 }}
                             xxl={{ span: 12, offset: 6 }}
                         >
-                            <div id="player_box">
-                                <iframe className="dplayer" src={this.state.vipjx} frameborder="0" allowFullScreen="true" title="vip解析"></iframe>
+                            <div id='player_box'>
+                                <iframe className='dplayer' src={this.state.vipjx} frameborder='0' allowFullScreen='true' title='vip解析'></iframe>
                             </div>
-                            <div><Button shape="round" onClick={() => this.props.history.goBack()}>返回</Button></div>
+                            <div><Button shape='round' onClick={() => this.props.history.goBack()}>返回</Button></div>
                         </Col>
                     </Row>
                 </Content>
