@@ -83,7 +83,7 @@ class Laboratory extends Component {
                             xl={{ span: 18, offset: 3 }}>
                             <h1>解密数据</h1>
                             <TextArea rows='4' onChange={e => this.handleEncChange(e)} placeholder='已经加密的内容' />
-                            <div id='encdata' style={{ margin: '0.5em 0', wordBreak: 'break-all', visibility: 'hidden' }}><code>{this.state.decdata}</code></div>
+                            <div id='encdata' style={{ margin: '0.5em 0', wordBreak: 'break-all', display: 'none' }}><code>{this.state.decdata}</code></div>
                             <Link
                                 to={{
                                     pathname: `/player/${this.state.name}`,
