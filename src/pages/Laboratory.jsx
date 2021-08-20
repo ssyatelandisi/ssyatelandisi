@@ -10,15 +10,17 @@ class Laboratory extends Component {
         super(props)
         this.state = {
             name: '播放器',
-            url: '',
             subtitle: '',
             base64: '',
             enc: '',
             key: '',
+            encdata: '',
+            decdata: '',
             vipjx: window.location.origin
         }
     }
-    handleUrlChange(event) {
+    handleEncChange(event) {
+        console.log(event.target.value);
         const base_buf = event.target.value.split('.')
         const results = []
         for (let kbuf of base_buf) {
@@ -26,14 +28,12 @@ class Laboratory extends Component {
             const dec = decrypt(content, key)
             results.push(new Buffer.from(dec).toString())
         }
-        this.setState({ url: results[1] })
+        this.setState({ decdata: results[0] })
         if (results.length > 1) {
             fetch(results[2]).then(res => res.text()).then(res => {
                 this.setState({ subtitle: URL.createObjectURL(new Blob([res], { 'type': 'text/vtt' })) })
             })
         }
-        console.clear()
-        console.log(this.state.url);
     }
     handleBase64Change(event) {
         const key = randomStr(5)
@@ -42,7 +42,7 @@ class Laboratory extends Component {
             base64: enc.length > 0 ? key + '!' + enc : '',
             enc,
             key: enc.length > 0 ? key : '',
-            url: event.target.value
+            decdata: event.target.value
         })
     }
     handleSubtitleChange(event) {
@@ -66,7 +66,7 @@ class Laboratory extends Component {
         if (sessionStorage.getItem('m3u8')) {
             const blob = new Blob([sessionStorage.getItem('m3u8')], { 'type': 'application/vnd.apple.mpegurl' })
             this.setState({
-                url: URL.createObjectURL(blob)
+                decdata: URL.createObjectURL(blob)
             })
         }
         this.generateSubtitle()
@@ -81,24 +81,22 @@ class Laboratory extends Component {
                             sm={{ span: 22, offset: 1 }}
                             md={{ span: 22, offset: 1 }}
                             xl={{ span: 18, offset: 3 }}>
-                            <h1>解密播放</h1>
-                            <div><label htmlFor='url'>播放地址：</label></div>
-                            <TextArea rows='4' onChange={e => this.handleUrlChange(e)} placeholder='已经加密的地址' />
-                            <TextArea rows='4' onChange={e => this.handleSubtitleChange(e)} placeholder='可选，vtt字幕内容' />
-                            <Button type='default' onClick={e => this.generateSubtitle(e)}>添加字幕</Button>
+                            <h1>解密数据</h1>
+                            <TextArea rows='4' onChange={e => this.handleEncChange(e)} placeholder='已经加密的内容' />
+                            <div style={{ margin: '0.5em 0', wordBreak: 'break-all' }}><code>{this.state.decdata}</code></div>
                             <Link
                                 to={{
                                     pathname: `/player/${this.state.name}`,
                                     state: {
                                         referer: this.props.location.pathname,
                                         name: this.state.name,
-                                        url: this.state.url,
+                                        decdata: this.state.decdata,
                                         subtitle: this.state.subtitle,
                                         type: 'auto'
                                     },
                                 }}
                             >
-                                <Button type='primary'>确认</Button>
+                                <Button type='primary'>确认播放</Button>
                             </Link>
                             <h1>加密数据</h1>
                             <TextArea rows='4' type='text' name='base64' id='base64' onChange={e => this.handleBase64Change(e)} placeholder='需要加密的内容' />
@@ -116,7 +114,7 @@ class Laboratory extends Component {
                                     state: {
                                         referer: this.props.location.pathname,
                                         name: this.state.name,
-                                        url: this.state.url,
+                                        decdata: this.state.decdata,
                                         subtitle: this.state.subtitle,
                                         type: 'hls'
                                     },
