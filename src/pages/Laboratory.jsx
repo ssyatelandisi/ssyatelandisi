@@ -30,7 +30,7 @@ class Laboratory extends Component {
         }
         this.setState({ decdata: results[0] })
         if (results.length > 1) {
-            fetch(results[2]).then(res => res.text()).then(res => {
+            fetch(results[1]).then(res => res.text()).then(res => {
                 this.setState({ subtitle: URL.createObjectURL(new Blob([res], { 'type': 'text/vtt' })) })
             })
         }
@@ -83,14 +83,14 @@ class Laboratory extends Component {
                             xl={{ span: 18, offset: 3 }}>
                             <h1>解密数据</h1>
                             <TextArea rows='4' onChange={e => this.handleEncChange(e)} placeholder='已经加密的内容' />
-                            <div style={{ margin: '0.5em 0', wordBreak: 'break-all' }}><code>{this.state.decdata}</code></div>
+                            <div id='encdata' style={{ margin: '0.5em 0', wordBreak: 'break-all', visibility: 'hidden' }}><code>{this.state.decdata}</code></div>
                             <Link
                                 to={{
                                     pathname: `/player/${this.state.name}`,
                                     state: {
                                         referer: this.props.location.pathname,
                                         name: this.state.name,
-                                        decdata: this.state.decdata,
+                                        url: this.state.decdata,
                                         subtitle: this.state.subtitle,
                                         type: 'auto'
                                     },
@@ -114,7 +114,7 @@ class Laboratory extends Component {
                                     state: {
                                         referer: this.props.location.pathname,
                                         name: this.state.name,
-                                        decdata: this.state.decdata,
+                                        url: this.state.decdata,
                                         subtitle: this.state.subtitle,
                                         type: 'hls'
                                     },
