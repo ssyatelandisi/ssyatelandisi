@@ -1,4 +1,4 @@
-rm docs
+rm -rf docs
 npm run build
 cp -r build docs
 git add .
