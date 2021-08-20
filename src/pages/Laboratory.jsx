@@ -20,7 +20,6 @@ class Laboratory extends Component {
         }
     }
     handleEncChange(event) {
-        console.log(event.target.value);
         const base_buf = event.target.value.split('.')
         const results = []
         for (let kbuf of base_buf) {
